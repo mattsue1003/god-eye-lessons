@@ -104,6 +104,21 @@ p{margin:8px 0}
 .talkbox{border-left:4px solid var(--plum);background:#EFE6F0;padding:12px 16px;border-radius:0 14px 14px 0;margin-top:12px;font-size:16px}
 .talkbox b{color:var(--plum)}
 
+/* 段落目錄 */
+.toc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:14px}
+.toc-h{font-size:15px;color:var(--ink-soft);letter-spacing:.1em;margin-bottom:6px}
+.toc-i{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;color:var(--ink);padding:8px 10px;border-radius:12px;font-size:16px;border:1.5px solid transparent}
+.toc-i:hover{background:var(--bg)}
+.toc-i.now{background:var(--rose-soft);border-color:var(--rose);font-weight:700}
+.toc-i.done .t{color:var(--ink-soft)}
+.toc-i .k{flex:none;width:26px;height:26px;border-radius:50%;background:var(--line);display:grid;place-items:center;font-size:13px;font-weight:700}
+.toc-i.now .k{background:var(--rose);color:#fff}
+.toc-i.done .k{background:var(--sage);color:#fff}
+.toc-i .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.toc-i .tm{flex:none;font-variant-numeric:tabular-nums;color:var(--ink-soft);font-size:15px}
+body.focus .toc{max-width:1100px;margin:14px auto 0;background:transparent;border:0;padding:0}
+body.focus .toc-i{font-size:17px}
+
 /* 完成頁 */
 .finish{text-align:center;padding:40px 20px}
 .finish svg{width:160px;height:160px}
@@ -125,18 +140,18 @@ body.focus header,body.focus footer{display:none}
 body.focus .fsbar{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:15px;color:var(--ink-soft);border-bottom:1px solid var(--line);background:var(--card);flex:none}
 body.focus .fsbar b{color:var(--ink);font-family:"Noto Serif TC",serif;font-size:17px}
 body.focus .fsbar .progress{flex:1;margin:0 8px}
-body.focus #app{flex:1;overflow:auto;padding:14px 18px 110px;-webkit-overflow-scrolling:touch}
+body.focus #app{flex:1;overflow:auto;padding:14px 18px 130px;-webkit-overflow-scrolling:touch}
 body.focus .progress.top{display:none}
 body.focus .card{box-shadow:none;border:0;background:transparent;padding:0;max-width:1100px;margin:0 auto}
 body.focus .eyebrow{display:none}
 body.focus h2{font-size:clamp(26px,3.6vw,40px)}
-body.focus .video-box{aspect-ratio:auto;height:min(calc((100vw - 36px) * 9 / 16),calc(100dvh - 240px));max-width:calc((100dvh - 240px) * 16 / 9);margin:10px auto}
+body.focus .video-box{aspect-ratio:auto;height:min(calc((100vw - 36px) * 9 / 16),calc(100dvh - 370px));max-width:calc((100dvh - 370px) * 16 / 9);margin:10px auto}
 body.focus .steps li{font-size:clamp(20px,2.6vw,28px);padding:18px 22px}
 body.focus .tipbox,body.focus .talkbox{font-size:clamp(16px,2vw,21px)}
 body.focus .nav{display:none}
 body.focus .actions.main{position:fixed;left:0;right:0;bottom:0;margin:0;padding:12px 18px calc(12px + env(safe-area-inset-bottom));background:rgba(255,251,244,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);justify-content:center;z-index:5}
 body.focus .actions.main .btn{font-size:clamp(18px,2.4vw,24px);padding:14px 30px}
-body.focus .actions.main .hint{width:100%;text-align:center;margin-top:-2px}
+body.focus .actions.main .hint{text-align:center;margin:0 6px}
 body.focus .mats{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
 body.focus .finish{padding-top:8vh}
 /* 手機橫放：影片佔滿 */
@@ -145,10 +160,10 @@ body.focus .finish{padding-top:8vh}
   body.focus .fsbar b{font-size:14px}
   body.focus .fsbar .ghost{padding:3px 10px;font-size:13px}
   body.focus .fsbar .progress span{height:5px}
-  body.focus #app{padding:6px 14px 64px}
+  body.focus #app{padding:6px 14px 70px}
   body.focus h2{font-size:18px;margin:0 0 4px}
   body.focus .soft.lead,body.focus .video-meta,body.focus .actions.main .hint,body.focus .mats{display:none}
-  body.focus .video-box{height:calc(100dvh - 126px);max-width:calc((100dvh - 126px) * 16 / 9);margin:0 auto}
+  body.focus .video-box{height:calc(100dvh - 140px);max-width:calc((100dvh - 140px) * 16 / 9);margin:0 auto}
   body.focus .actions.main{padding:6px 12px;gap:8px}
   body.focus .actions.main .btn{font-size:15px;padding:8px 18px}
   body.focus .actions.main .ghost{padding:5px 12px;font-size:13px}
@@ -161,7 +176,8 @@ body.focus .finish{padding-top:8vh}
   body.focus .fsbar .ghost{padding:5px 10px;font-size:13px}
   body.focus .fsbar .progress{flex-basis:100%;margin:2px 0 0;order:9}
   body.focus .fsbar .progress span{height:6px}
-  body.focus #app{padding:12px 14px 150px}
+  body.focus #app{padding:12px 14px 160px}
+  body.focus .video-box{height:calc((100vw - 28px) * 9 / 16)}
   body.focus .actions.main{gap:8px}
   body.focus .actions.main .btn{flex-basis:100%;text-align:center;padding:14px 10px;font-size:18px}
   body.focus .actions.main .ghost{flex:1;font-size:15px}
@@ -347,7 +363,7 @@ function renderHome(){
       ${COURSES.map(c=>`<button class="course" data-c="${c.id}">
         ${c.id==='four'?eyeSVG('ico','#C9707A','#D9A050'):starSVG('ico')}
         <span class="pill ${c.id==='four'?'sage':'amber'}">${c.level}</span>
-        <b>${c.name}</b><small>${c.sub}　·　${c.segs.length} 段</small>
+        <b>${c.name}</b><small>${c.sub}　·　${c.segs.length} 段　·　影片 ${fmt(c.segs[0].s)}–${fmt(c.segs[c.segs.length-1].e)}</small>
         <small>${c.intro}</small>
       </button>`).join('')}
     </div>
@@ -405,6 +421,10 @@ function renderSeg(){
       </div>
     </div>
   </div>
+  <div class="toc">
+    <div class="toc-h">本課段落與影片時間</div>
+    ${c.segs.map((g,i)=>`<button class="toc-i ${i===state.seg?'now':i<state.seg?'done':''}" data-i="${i}"><span class="k">${i+1}</span><span class="t">${g.t}</span><span class="tm">${fmt(g.s)}–${fmt(g.e)}</span></button>`).join('')}
+  </div>
   <div class="actions nav" style="justify-content:space-between">
     <button class="ghost" id="prevBtn" ${state.seg===0?'disabled':''}>← 上一段</button>
     <button class="ghost" id="skipBtn">跳到下一段</button>
@@ -416,6 +436,7 @@ function renderSeg(){
   app.querySelector('#rewatchBtn').onclick=()=>{state.phase='watch';save();render();};
   app.querySelector('#prevBtn').onclick=()=>{ if(state.seg>0){state.seg--;state.phase='watch';save();render();} };
   app.querySelector('#skipBtn').onclick=()=>advance();
+  app.querySelectorAll('.toc-i').forEach(b=>b.onclick=()=>{state.seg=+b.dataset.i;state.phase='watch';save();render();window.scrollTo({top:0,behavior:'smooth'});});
   app.querySelector('#skipBtn2').onclick=()=>{state.phase='do';save();render();};
   app.querySelector('#nextBtn').onclick=()=>advance();
   app.querySelectorAll('.steps li').forEach(li=>li.onclick=()=>{
@@ -492,7 +513,7 @@ function destroyPlayer(){ clearInterval(endTimer); if(player&&player.destroy){tr
 /* ===================== 專注模式 ===================== */
 function updateFsBar(){
   const c=course();
-  document.getElementById('fsTitle').textContent = c ? c.name + (state.phase==='finish'?'　完成':`　第 ${state.seg+1} / ${c.segs.length} 段`) : '';
+  document.getElementById('fsTitle').textContent = c ? c.name + (state.phase==='finish'?'　完成':`　第 ${state.seg+1} / ${c.segs.length} 段　${fmt(c.segs[state.seg].s)}–${fmt(c.segs[state.seg].e)}`) : '';
   document.getElementById('fsProg').innerHTML = c ? c.segs.map((_,i)=>`<span class="${state.phase==='finish'||i<state.seg?'done':i===state.seg?'now':''}"></span>`).join('') : '';
 }
 function enterFocus(){
