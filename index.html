@@ -37,6 +37,7 @@ header .t{font-size:15px;color:var(--ink-soft)}
 header .t b{display:block;font-size:22px;color:var(--ink);font-family:"Noto Serif TC",serif;line-height:1.3}
 .spacer{flex:1}
 .ghost{background:transparent;color:var(--ink-soft);padding:8px 14px;border:1.5px solid var(--line);white-space:nowrap}
+.hbtns{display:flex;gap:8px}
 .ghost:hover{background:var(--card)}
 
 /* 進度 */
@@ -115,12 +116,67 @@ body.big h2{font-size:34px}
 body.big .btn{font-size:22px;padding:16px 30px}
 
 footer{text-align:center;color:var(--ink-soft);font-size:14px;margin-top:30px}
+
+/* ===== 專注模式（全螢幕） ===== */
+.fsbar{display:none}
+body.focus{overflow:hidden;background:var(--bg)}
+body.focus .wrap{max-width:none;padding:0;height:100dvh;display:flex;flex-direction:column}
+body.focus header,body.focus footer{display:none}
+body.focus .fsbar{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:15px;color:var(--ink-soft);border-bottom:1px solid var(--line);background:var(--card);flex:none}
+body.focus .fsbar b{color:var(--ink);font-family:"Noto Serif TC",serif;font-size:17px}
+body.focus .fsbar .progress{flex:1;margin:0 8px}
+body.focus #app{flex:1;overflow:auto;padding:14px 18px 110px;-webkit-overflow-scrolling:touch}
+body.focus .progress.top{display:none}
+body.focus .card{box-shadow:none;border:0;background:transparent;padding:0;max-width:1100px;margin:0 auto}
+body.focus .eyebrow{display:none}
+body.focus h2{font-size:clamp(26px,3.6vw,40px)}
+body.focus .video-box{aspect-ratio:auto;height:min(calc((100vw - 36px) * 9 / 16),calc(100dvh - 240px));max-width:calc((100dvh - 240px) * 16 / 9);margin:10px auto}
+body.focus .steps li{font-size:clamp(20px,2.6vw,28px);padding:18px 22px}
+body.focus .tipbox,body.focus .talkbox{font-size:clamp(16px,2vw,21px)}
+body.focus .nav{display:none}
+body.focus .actions.main{position:fixed;left:0;right:0;bottom:0;margin:0;padding:12px 18px calc(12px + env(safe-area-inset-bottom));background:rgba(255,251,244,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);justify-content:center;z-index:5}
+body.focus .actions.main .btn{font-size:clamp(18px,2.4vw,24px);padding:14px 30px}
+body.focus .actions.main .hint{width:100%;text-align:center;margin-top:-2px}
+body.focus .mats{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+body.focus .finish{padding-top:8vh}
+/* 手機橫放：影片佔滿 */
+@media (max-height:500px) and (orientation:landscape){
+  body.focus .fsbar{padding:4px 12px}
+  body.focus .fsbar b{font-size:14px}
+  body.focus .fsbar .ghost{padding:3px 10px;font-size:13px}
+  body.focus .fsbar .progress span{height:5px}
+  body.focus #app{padding:6px 14px 64px}
+  body.focus h2{font-size:18px;margin:0 0 4px}
+  body.focus .soft.lead,body.focus .video-meta,body.focus .actions.main .hint,body.focus .mats{display:none}
+  body.focus .video-box{height:calc(100dvh - 126px);max-width:calc((100dvh - 126px) * 16 / 9);margin:0 auto}
+  body.focus .actions.main{padding:6px 12px;gap:8px}
+  body.focus .actions.main .btn{font-size:15px;padding:8px 18px}
+  body.focus .actions.main .ghost{padding:5px 12px;font-size:13px}
+  body.focus .steps li{font-size:17px;padding:10px 14px;margin-bottom:6px}
+  body.focus h3{margin:6px 0 4px;font-size:16px}
+}
+@media (max-width:640px){
+  body.focus .fsbar{flex-wrap:wrap;padding:8px 12px;gap:6px}
+  body.focus .fsbar b{font-size:15px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  body.focus .fsbar .ghost{padding:5px 10px;font-size:13px}
+  body.focus .fsbar .progress{flex-basis:100%;margin:2px 0 0;order:9}
+  body.focus .fsbar .progress span{height:6px}
+  body.focus #app{padding:12px 14px 150px}
+  body.focus .actions.main{gap:8px}
+  body.focus .actions.main .btn{flex-basis:100%;text-align:center;padding:14px 10px;font-size:18px}
+  body.focus .actions.main .ghost{flex:1;font-size:15px}
+  body.focus .actions.main #rewatchBtn{flex-basis:auto;font-size:15px;padding:8px 14px}
+  body.focus .actions.main .hint{order:8;font-size:13px;margin:0}
+  body.focus .actions.main .fs-only{order:9}
+}
 .hide{display:none!important}
+.fs-only{display:none}
+body.focus .fs-only{display:inline-block}
 @media (max-width:640px){
   .courses{grid-template-columns:1fr}
   h1{font-size:28px} h2{font-size:24px}
   .card{padding:20px 18px}
-  header .t b{font-size:17px} header .t{font-size:13px} .ghost{padding:6px 10px;font-size:15px}
+  header{flex-wrap:wrap} header .t{flex:1;font-size:13px} header .t b{font-size:18px} .spacer{display:none} .hbtns{flex-basis:100%;justify-content:flex-end} header .ghost{padding:6px 12px;font-size:14px}
 }
 </style>
 </head>
@@ -139,10 +195,14 @@ footer{text-align:center;color:var(--ink-soft);font-size:14px;margin-top:30px}
   </svg>
   <div class="t"><b>守護家人・上帝之眼</b>一段影片，一段動手做</div>
   <div class="spacer"></div>
+  <div class="hbtns">
   <button class="ghost" id="bigBtn" title="投影時放大字體">放大字</button>
+  <button class="ghost hide" id="fsBtn" title="全螢幕專注模式（F）">全螢幕</button>
   <button class="ghost hide" id="homeBtn">回首頁</button>
+  </div>
 </header>
 
+<div class="fsbar" id="fsbar"><b id="fsTitle"></b><div class="progress" id="fsProg"></div><button class="ghost" id="fsHome">回首頁</button><button class="ghost" id="fsExit">離開全螢幕</button></div>
 <div id="app"></div>
 
 <footer>愛迪樂｜鍾孟修 職能治療師　·　影片來源：YouTube 原作者頻道，本頁僅做教學片段導引</footer>
@@ -249,6 +309,9 @@ function course(){return COURSES.find(c=>c.id===state.course)}
 function render(){
   destroyPlayer();
   homeBtn.classList.toggle('hide', state.phase==='home');
+  document.getElementById('fsBtn').classList.toggle('hide', state.phase==='home');
+  if(state.phase==='home' && document.body.classList.contains('focus')) exitFocus();
+  updateFsBar();
   if(state.phase==='home') return renderHome();
   if(state.phase==='finish') return renderFinish();
   renderSeg();
@@ -294,7 +357,9 @@ function renderHome(){
     <p class="soft">1　投影本頁，按「播放這一段」，影片只會播到這一段的結束點就停。<br>
     2　按「看完了，一起動手做」，影片收起，畫面只剩文字步驟。老師照著唸，做完一項點一下打勾。<br>
     3　全部打勾後按「進入下一段」。進度會自動記住，下週可以接著做。<br>
-    4　每段下方有「聊一聊」，適合在等慢的學員時帶大家說說話。</p>
+    4　每段下方有「聊一聊」，適合在等慢的學員時帶大家說說話。<br>
+    5　進入課程後按右上「全螢幕」：影片和文字放大、按鈕固定在底部，手機橫放影片會佔滿畫面。</p>
+    <p class="soft" style="font-size:15px">電腦鍵盤：<b>F</b> 全螢幕　<b>空白鍵</b> 播放/暫停　<b>Enter 或 →</b> 下一步　<b>←</b> 上一步　<b>1–9</b> 勾選步驟</p>
   </div>`;
   app.querySelectorAll('.course').forEach(b=>b.onclick=()=>{
     state.course=b.dataset.c;
@@ -310,20 +375,21 @@ function renderSeg(){
   const c=course(), seg=c.segs[state.seg], n=c.segs.length;
   const checks=(state.done[c.id]&&state.done[c.id].checks&&state.done[c.id].checks[state.seg])||[];
   app.innerHTML=`
-  <div class="progress">${c.segs.map((_,i)=>`<span class="${i<state.seg?'done':i===state.seg?'now':''}"></span>`).join('')}</div>
+  <div class="progress top">${c.segs.map((_,i)=>`<span class="${i<state.seg?'done':i===state.seg?'now':''}"></span>`).join('')}</div>
   <div class="card">
     <div class="eyebrow">${c.name}　第 ${state.seg+1} 段 / 共 ${n} 段</div>
     <h2>${seg.t}</h2>
-    <p class="soft">${seg.w}</p>
+    <p class="soft lead">${seg.w}</p>
 
     <div id="watch" class="${state.phase==='watch'?'':'hide'}">
       ${state.seg===0?`<h3>所需材料</h3><div class="mats">${c.materials.map(m=>`<div><b>${m[0]}</b>${m[1]}</div>`).join('')}</div>`:''}
       <div class="video-meta" style="margin-top:14px"><span class="pill rose">影片片段</span><span>${fmt(seg.s)} 到 ${fmt(seg.e)}，約 ${seg.e-seg.s} 秒</span></div>
       <div class="video-box"><div id="player"></div></div>
-      <div class="actions">
+      <div class="actions main">
         <button class="btn" id="playBtn">▶ 播放這一段</button>
         <button class="btn sage" id="toDoBtn">看完了，一起動手做</button>
         <span class="hint" id="watchHint">影片播到結束點會自動停下來</span>
+        <button class="ghost fs-only" id="skipBtn2">跳過影片</button>
       </div>
     </div>
 
@@ -332,14 +398,14 @@ function renderSeg(){
       <ul class="steps">${seg.steps.map((s,i)=>`<li data-i="${i}" class="${checks[i]?'ok':''}"><span class="n"><span>${i+1}</span></span><div>${s}</div></li>`).join('')}</ul>
       ${seg.tip?`<div class="tipbox"><b>帶領提醒</b>　${seg.tip}</div>`:''}
       ${seg.talk?`<div class="talkbox"><b>聊一聊</b>　${seg.talk}</div>`:''}
-      <div class="actions">
+      <div class="actions main">
         <button class="btn ghost" id="rewatchBtn" style="background:transparent;color:var(--ink-soft);box-shadow:none">再看一次影片</button>
         <button class="btn" id="nextBtn">${state.seg===n-1?'全部完成':'進入下一段 →'}</button>
         <span class="hint" id="doHint"></span>
       </div>
     </div>
   </div>
-  <div class="actions" style="justify-content:space-between">
+  <div class="actions nav" style="justify-content:space-between">
     <button class="ghost" id="prevBtn" ${state.seg===0?'disabled':''}>← 上一段</button>
     <button class="ghost" id="skipBtn">跳到下一段</button>
   </div>`;
@@ -350,6 +416,7 @@ function renderSeg(){
   app.querySelector('#rewatchBtn').onclick=()=>{state.phase='watch';save();render();};
   app.querySelector('#prevBtn').onclick=()=>{ if(state.seg>0){state.seg--;state.phase='watch';save();render();} };
   app.querySelector('#skipBtn').onclick=()=>advance();
+  app.querySelector('#skipBtn2').onclick=()=>{state.phase='do';save();render();};
   app.querySelector('#nextBtn').onclick=()=>advance();
   app.querySelectorAll('.steps li').forEach(li=>li.onclick=()=>{
     li.classList.toggle('ok');
@@ -421,6 +488,43 @@ function mountPlayer(autoplay){
   });
 }
 function destroyPlayer(){ clearInterval(endTimer); if(player&&player.destroy){try{player.destroy()}catch(e){}} player=null; }
+
+/* ===================== 專注模式 ===================== */
+function updateFsBar(){
+  const c=course();
+  document.getElementById('fsTitle').textContent = c ? c.name + (state.phase==='finish'?'　完成':`　第 ${state.seg+1} / ${c.segs.length} 段`) : '';
+  document.getElementById('fsProg').innerHTML = c ? c.segs.map((_,i)=>`<span class="${state.phase==='finish'||i<state.seg?'done':i===state.seg?'now':''}"></span>`).join('') : '';
+}
+function enterFocus(){
+  document.body.classList.add('focus');
+  try{localStorage.setItem('godeye-focus','1')}catch(e){}
+  const el=document.documentElement;
+  const rq=el.requestFullscreen||el.webkitRequestFullscreen;
+  if(rq && !document.fullscreenElement){ try{ rq.call(el).catch&&rq.call(el).catch(()=>{}) }catch(e){} }
+  updateFsBar();
+}
+function exitFocus(){
+  document.body.classList.remove('focus');
+  try{localStorage.setItem('godeye-focus','')}catch(e){}
+  const ex=document.exitFullscreen||document.webkitExitFullscreen;
+  if(ex && (document.fullscreenElement||document.webkitFullscreenElement)){ try{ex.call(document)}catch(e){} }
+}
+function toggleFocus(){ document.body.classList.contains('focus')?exitFocus():enterFocus(); }
+document.getElementById('fsBtn').onclick=enterFocus;
+document.getElementById('fsExit').onclick=exitFocus;
+document.getElementById('fsHome').onclick=()=>{exitFocus();goHome();};
+document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement && document.body.classList.contains('focus')){ /* 使用者按 Esc 離開瀏覽器全螢幕：保留專注版面，不強制離開 */ } });
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return;
+  const k=e.key;
+  if(k==='f'||k==='F'){ toggleFocus(); return; }
+  if(state.phase==='home'||state.phase==='finish') return;
+  if(k===' '){ e.preventDefault(); if(state.phase==='watch'){ const b=app.querySelector('#playBtn'); if(player&&player.getPlayerState&&player.getPlayerState()===YT.PlayerState.PLAYING) player.pauseVideo(); else if(b) b.click(); } return; }
+  if(k==='Enter'||k==='ArrowRight'){ e.preventDefault(); if(state.phase==='watch'){state.phase='do';save();render();} else advance(); return; }
+  if(k==='ArrowLeft'){ e.preventDefault(); if(state.phase==='do'){state.phase='watch';save();render();} else if(state.seg>0){state.seg--;save();render();} return; }
+  if(state.phase==='do' && /^[1-9]$/.test(k)){ const li=app.querySelectorAll('.steps li')[+k-1]; if(li) li.click(); }
+});
+try{ if(localStorage.getItem('godeye-focus')==='1' && state.phase!=='home') document.body.classList.add('focus'); }catch(e){}
 
 /* ===================== 其他 ===================== */
 function goHome(){ state.phase='home'; save(); render(); }
